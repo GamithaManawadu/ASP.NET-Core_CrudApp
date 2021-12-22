@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using TestTemp1.Models;
 
 namespace TestTemp1.Controllers
 {
+    [Authorize]
     public class ApplicationTypeController : Controller
     {
         private readonly ApplicationDbContext _db;

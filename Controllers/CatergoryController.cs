@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using TestTemp1.Models;
 
 namespace TestTemp1.Controllers
 {
+    [Authorize]
     public class CatergoryController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -17,11 +19,19 @@ namespace TestTemp1.Controllers
             _db = db;
 
         }
-        public IActionResult Index()
+
+        public IActionResult Index(string searchString)
         {
             IEnumerable<Catergory> objList = _db.Catergory;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                return View(_db.Catergory.Where(x => x.Name.Contains(searchString)).ToList());
+            }
             return View(objList);
+
         }
+        
 
         //Get Create
         public IActionResult Create()
@@ -106,5 +116,7 @@ namespace TestTemp1.Controllers
             
             
         }
+
+        
     }
 }
