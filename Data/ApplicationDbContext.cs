@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TestTemp1.Models;
 
+
 namespace TestTemp1.Data
 {
     public class ApplicationDbContext : DbContext
@@ -16,5 +17,12 @@ namespace TestTemp1.Data
 
         public DbSet<Catergory> Catergory { get; set; }
         public DbSet<ApplicationType> ApplicationType { get; set; }
+
+        public DbSet<PBWCellType> PBWCellType { get; set; }
+
+        public DbSet<PBWGagingSt> PBWGagingSt { get; set; }
     }
+
+
+    
 }
